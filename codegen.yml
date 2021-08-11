@@ -1,0 +1,12 @@
+overwrite: true
+schema: "https://testing.saleor.cloud/graphql/"
+documents: "gqlQueries/**/*.graphql"
+generates:
+  types/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"

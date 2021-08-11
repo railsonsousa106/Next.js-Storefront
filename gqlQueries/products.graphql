@@ -1,0 +1,105 @@
+query LatestProducts {
+  products(first: 10) {
+    edges {
+      node {
+        id
+        name
+        slug
+        description
+        thumbnail {
+          url
+          alt
+        }
+      }
+    }
+  }
+}
+
+query ProductDetails($id: ID!) {
+  product(id: $id) {
+    id
+    slug
+    name
+    description
+    defaultVariant {
+      id
+      sku
+      name
+      pricing {
+        price {
+          currency
+          net {
+            amount
+          }
+        }
+      }
+      media {
+        url
+        alt
+      }
+      attributes {
+        attribute {
+          name
+        }
+        values {
+          name
+        }
+      }
+    }
+    variants {
+      id
+      sku
+      name
+      pricing {
+        price {
+          currency
+          net {
+            amount
+          }
+        }
+      }
+      media {
+        url
+        alt
+      }
+      attributes {
+        attribute {
+          name
+        }
+        values {
+          name
+        }
+      }
+    }
+    productType {
+      name
+    }
+    category {
+      name
+    }
+    thumbnail {
+      url
+      alt
+    }
+  }
+}
+
+query getAllProductPaths(
+  $first: Int = 100
+  $cursor: String
+  $channel: String = "default-channel"
+) {
+  products(first: $first, after: $cursor, channel: $channel) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      node {
+        id
+        slug
+      }
+      cursor
+    }
+  }
+}
